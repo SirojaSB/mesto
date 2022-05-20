@@ -1,13 +1,14 @@
 .profile__info {
-    padding: 22px 18px 25px 30px;
+    padding: 23px 18px 25px 30px;
     display: grid;
     grid-template-columns: repeat(2, max-content);
     grid-template-rows: repeat(2, min-content);
-    gap: 14px 10px;
+    gap: 14px 18px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 791px) {
     .profile__info {
-        padding: 26px 0 36px;
+        padding: 26px 0 36px 23px;
+        gap: 8px 8px;
     }
 }

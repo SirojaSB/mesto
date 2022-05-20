@@ -7,6 +7,7 @@
     right: -40px;
     border: 0;
     background-color: transparent;
+    cursor: pointer;
     transition: opacity 0.3s ease;
 }
 
@@ -14,11 +15,10 @@
     opacity: 0.6;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 791px) {
     .popup__close {
         width: 20px;
         height: 20px;
-        top: -40px;
         right: 0;
         background-size: contain;
     }

@@ -6,8 +6,21 @@
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     background-color: transparent;
     font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.popup__input:last-of-type {
+    margin-bottom: 48px;
 }
 
 .popup__input:focus {
     outline-color: rgba(0, 0, 0, .2);
-  }
+}
+
+@media screen and (max-width: 791px) {
+    .popup__input:last-of-type {
+        margin-bottom: 45px;
+    }
+}
+
+

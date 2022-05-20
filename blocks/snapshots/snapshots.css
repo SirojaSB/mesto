@@ -1,11 +1,18 @@
 .snapshots {
-    width: calc(100% - 200px*2);
+    width: 880px;
     margin: 0 auto 67px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1279px) {
     .snapshots {
-        width: calc(100% - 19px*2);
+        width: 581px;
+    }
+}
+
+@media screen and (max-width: 791px) {
+    .snapshots {
+        width: 282px;
         margin: 0 auto 48px;
     }
 }
+

@@ -9,7 +9,6 @@
 <body class="page">
   <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
-      <div class="header__line"></div>
   </header>
   <main class="content">
       <section class="profile">
@@ -17,53 +16,53 @@
               <img src="./images/avatar.jpg" alt="Фотография исследователя" class="profile__avatar">
               <div class="profile__info">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
-                  <button class="profile__edit-button"><img src="./images/edit-but.svg" alt="Знак в виде карандаша" class="profile__edit-img"></button>
-                  <h2 class="profile__job">Исследователь океана</h2>
+                  <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
+                  <p class="profile__job">Исследователь океана</p>
               </div>
           </div>
-          <button class="profile__add-button"><img src="./images/add-button.svg" alt="Знак плюс" class="profile__add-img"></button>
+          <button type="button" class="profile__add-button" aria-label="Добавить фотографию"></button>
       </section>
       <section class="snapshots">
           <ul class="snapshots__elements">
               <li class="snapshots__element">
                   <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография руин" class="snapshots__photo">
                   <div class="snapshots__info">
-                      <h3 class="snapshots__title">Карачаевск</h3>
+                      <h2 class="snapshots__title">Карачаевск</h2>
                       <button class="snapshots__like"></button>
                   </div>
               </li>
               <li class="snapshots__element">
                 <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Фотография горы Эльбрус" class="snapshots__photo">
                 <div class="snapshots__info">
-                    <h3 class="snapshots__title">Гора Эльбрус</h3>
+                    <h2 class="snapshots__title">Гора Эльбрус</h2>
                     <button class="snapshots__like"></button>
                 </div>
             </li>
             <li class="snapshots__element">
                 <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Фотография хребета Донбай" class="snapshots__photo">
                 <div class="snapshots__info">
-                    <h3 class="snapshots__title">Домбай</h3>
+                    <h2 class="snapshots__title">Домбай</h2>
                     <button class="snapshots__like"></button>
                 </div>
             </li>
             <li class="snapshots__element">
                 <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Фотография горы Эльбрус" class="snapshots__photo">
                 <div class="snapshots__info">
-                    <h3 class="snapshots__title">Гора Эльбрус</h3>
+                    <h2 class="snapshots__title">Гора Эльбрус</h2>
                     <button class="snapshots__like"></button>
                 </div>
             </li>
             <li class="snapshots__element">
                 <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Фотография хребета Донбай" class="snapshots__photo">
                 <div class="snapshots__info">
-                    <h3 class="snapshots__title">Домбай</h3>
+                    <h2 class="snapshots__title">Домбай</h2>
                     <button class="snapshots__like"></button>
                 </div>
             </li>
             <li class="snapshots__element">
                 <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография руин" class="snapshots__photo">
                 <div class="snapshots__info">
-                    <h3 class="snapshots__title">Карачаево-Черкессия</h3>
+                    <h2 class="snapshots__title">Карачаево-Черкессия</h2>
                     <button class="snapshots__like"></button>
                 </div>
             </li>
@@ -71,16 +70,16 @@
       </section>
   </main>
   <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
+      <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
   </footer>
 
   <div class="popup">
       <div class="popup__content">
-          <button class="popup__close"></button>
+          <button type="button" class="popup__close" aria-label="Закрыть форму с редактированием"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <form class="popup__form">
-              <input type="text" class="popup__input popup__input_name" placeholder="ФИО">
-              <input type="text" class="popup__input popup__input_job" placeholder="Информация о деятельности">
+          <form name="edit-profile" class="popup__form">
+              <input type="text" name="formname" class="popup__input popup__input_type_name" placeholder="ФИО" required>
+              <input type="text" name="formjob" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required>
               <button type="submit" class="popup__submit">Сохранить</button>
           </form>
       </div>
