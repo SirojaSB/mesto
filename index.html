@@ -24,48 +24,7 @@
       </section>
       <section class="snapshots">
           <ul class="snapshots__elements">
-              <li class="snapshots__element">
-                  <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография руин" class="snapshots__photo">
-                  <div class="snapshots__info">
-                      <h2 class="snapshots__title">Карачаевск</h2>
-                      <button type="button" class="snapshots__like"></button>
-                  </div>
-              </li>
-              <li class="snapshots__element">
-                <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Фотография горы Эльбрус" class="snapshots__photo">
-                <div class="snapshots__info">
-                    <h2 class="snapshots__title">Гора Эльбрус</h2>
-                    <button type="button" class="snapshots__like"></button>
-                </div>
-            </li>
-            <li class="snapshots__element">
-                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Фотография хребета Донбай" class="snapshots__photo">
-                <div class="snapshots__info">
-                    <h2 class="snapshots__title">Домбай</h2>
-                    <button type="button" class="snapshots__like"></button>
-                </div>
-            </li>
-            <li class="snapshots__element">
-                <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Фотография горы Эльбрус" class="snapshots__photo">
-                <div class="snapshots__info">
-                    <h2 class="snapshots__title">Гора Эльбрус</h2>
-                    <button type="button" class="snapshots__like"></button>
-                </div>
-            </li>
-            <li class="snapshots__element">
-                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Фотография хребета Донбай" class="snapshots__photo">
-                <div class="snapshots__info">
-                    <h2 class="snapshots__title">Домбай</h2>
-                    <button type="button" class="snapshots__like"></button>
-                </div>
-            </li>
-            <li class="snapshots__element">
-                <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография руин" class="snapshots__photo">
-                <div class="snapshots__info">
-                    <h2 class="snapshots__title">Карачаево-Черкессия</h2>
-                    <button type="button" class="snapshots__like"></button>
-                </div>
-            </li>
+
           </ul>
       </section>
   </main>
@@ -73,17 +32,48 @@
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div id="popup-add" class="popup">
       <div class="popup__content">
-          <button type="button" class="popup__close" aria-label="Закрыть форму с редактированием"></button>
+          <button id="close-add" type="button" class="popup__close" aria-label="Закрыть форму с добавлением"></button>
+          <h3 class="popup__title">Новое место</h3>
+          <form id="add-snapshot" name="add-snapshot" class="popup__form">
+              <input id="form-img-name" type="text" name="form-img-name" class="popup__input popup__input_type_name" placeholder="Название" required>
+              <input id="form-img-link" type="text" name="form-img-link" class="popup__input popup__input_type_job" placeholder="Ссылка на картинку" required>
+              <button type="submit" class="popup__submit">Создать</button>
+          </form>
+      </div>
+  </div>
+
+  <div id="popup-edit" class="popup">
+      <div class="popup__content">
+          <button id="close-edit" type="button" class="popup__close" aria-label="Закрыть форму с редактированием"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <form name="edit-profile" class="popup__form">
-              <input type="text" name="formname" class="popup__input popup__input_type_name" placeholder="ФИО" required>
-              <input type="text" name="formjob" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required>
+          <form id="edit-profile" name="edit-profile" class="popup__form">
+              <input id="formname" type="text" name="formname" class="popup__input popup__input_type_name" placeholder="ФИО" required>
+              <input id="formjob" type="text" name="formjob" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required>
               <button type="submit" class="popup__submit">Сохранить</button>
           </form>
       </div>
   </div>
+
+  <div id="popup-img" class="popup popup_img">
+      <div class="popup__figure">
+          <button id="close-img" type="button" class="popup__close" aria-label="Закрыть карточку"></button>
+          <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография карточки" class="popup__image">
+          <p class="popup__caption"></p>
+      </div>
+  </div>
+
+  <template class="snapshots__template">
+      <li class="snapshots__element">
+          <button type="button" class="snapshots__delete" aria-label="Удалить карточку"></button>
+          <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография карточки" class="snapshots__photo">
+          <div class="snapshots__info">
+              <h2 class="snapshots__title"></h2>
+              <button type="button" class="snapshots__like"></button>
+          </div>
+      </li>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
