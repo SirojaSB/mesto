@@ -47,42 +47,51 @@ const popupImgLink = formAddEl.querySelector('#form-img-link');
 const snapshotContainer = document.querySelector('.snapshots__elements');
 const snapshotTemplate = document.querySelector('.snapshots__template');
 
-const addPopupListeners = snapshot => {
-    snapshot.querySelector('.snapshots__like').addEventListener('click', function (e) {
+const addPopupListeners = card => {
+    card.querySelector('.snapshots__like').addEventListener('click', function (e) {
         e.target.classList.toggle('snapshots__like_active');
     })
-    snapshot.querySelector('.snapshots__delete').addEventListener('click', function (e) {
-        const snapshot = e.target.closest('.snapshots__element');
-        snapshot.remove();
+    card.querySelector('.snapshots__delete').addEventListener('click', function (e) {
+        const card = e.target.closest('.snapshots__element');
+        card.remove();
     })
-    const snapshotTitle = snapshot.querySelector('.snapshots__title');
-    snapshot.querySelector('.snapshots__photo').addEventListener('click', function (e) {
-        formOpen(popupImg);
+    const snapshotTitle = card.querySelector('.snapshots__title');
+    card.querySelector('.snapshots__photo').addEventListener('click', function (e) {
+        popupOpen(popupImg);
         imgPopup.src = e.target.src;
+        imgPopup.alt = snapshotTitle.textContent;
         captionPopup.textContent = snapshotTitle.textContent;
 
     });
     closeImgButton.addEventListener('click', function () {
-        formClose(popupImg);
+        popupClose(popupImg);
     });
 }
 
+function createCard (name, link) {
+    const card = snapshotTemplate.content.cloneNode(true);
+    card.querySelector('.snapshots__photo').src = link;
+    card.querySelector('.snapshots__photo').alt= name;
+    card.querySelector('.snapshots__title').textContent= name;
+    addPopupListeners(card);
+    return card;
+};
+
+function renderCard(card, container) {
+    container.prepend(card);
+}
+
 initialCards.forEach((item) => {
-    const snapshot = snapshotTemplate.content.cloneNode(true);
+    let cardCreateFull = createCard (item.name, item.link)
 
-    snapshot.querySelector('.snapshots__photo').src = item.link;
-    snapshot.querySelector('.snapshots__title').textContent= item.name;
-
-    addPopupListeners(snapshot);
-
-    snapshotContainer.prepend(snapshot);
+    renderCard(cardCreateFull, snapshotContainer);
 });
 
-const formOpen = popup => {
+const popupOpen = popup => {
     popup.classList.add('popup_open');
 };
 
-const formClose = popup => {
+const popupClose = popup => {
     popup.classList.remove('popup_open');
 };
 
@@ -92,24 +101,19 @@ const formEditSubmitHandler = e => {
     profileName.textContent = popupName.value;
     profileJob.textContent = popupJob.value;
 
-    formClose(popupEdit);
+    popupClose(popupEdit);
 };
 
 const formAddSubmitHandler = e => {
     e.preventDefault();
 
-    const snapshot = snapshotTemplate.content.cloneNode(true);
+    let cardCreateFull = createCard (popupImgName.value, popupImgLink.value);
 
-    snapshot.querySelector('.snapshots__photo').src = popupImgLink.value;
-    snapshot.querySelector('.snapshots__title').textContent= popupImgName.value;
-
-    addPopupListeners(snapshot);
-
-    snapshotContainer.prepend(snapshot);
+    renderCard(cardCreateFull, snapshotContainer);
 
     formAddEl.reset();
 
-    formClose(popupAdd);
+    popupClose(popupAdd);
 };
 
 function popupEditText() {
@@ -120,19 +124,19 @@ function popupEditText() {
 editButton.addEventListener('click', function () {
     popupEditText();
 
-    formOpen(popupEdit);
+    popupOpen(popupEdit);
 });
 
 addButton.addEventListener('click', function () {
-    formOpen(popupAdd);
+    popupOpen(popupAdd);
 });
 
 closeEditButton.addEventListener('click', function () {
-    formClose(popupEdit);
+    popupClose(popupEdit);
 });
 
 closeAddButton.addEventListener('click', function () {
-    formClose(popupAdd);
+    popupClose(popupAdd);
 });
 
 formEditEl.addEventListener('submit', formEditSubmitHandler);
