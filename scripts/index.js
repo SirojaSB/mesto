@@ -63,9 +63,6 @@ const addPopupListeners = card => {
         captionPopup.textContent = snapshotTitle.textContent;
 
     });
-    closeImgButton.addEventListener('click', function () {
-        popupClose(popupImg);
-    });
 }
 
 function createCard (name, link) {
@@ -82,7 +79,7 @@ function renderCard(card, container) {
 }
 
 initialCards.forEach((item) => {
-    let cardCreateFull = createCard (item.name, item.link)
+    const cardCreateFull = createCard (item.name, item.link)
 
     renderCard(cardCreateFull, snapshotContainer);
 });
@@ -107,7 +104,7 @@ const formEditSubmitHandler = e => {
 const formAddSubmitHandler = e => {
     e.preventDefault();
 
-    let cardCreateFull = createCard (popupImgName.value, popupImgLink.value);
+    const cardCreateFull = createCard (popupImgName.value, popupImgLink.value);
 
     renderCard(cardCreateFull, snapshotContainer);
 
@@ -137,6 +134,10 @@ closeEditButton.addEventListener('click', function () {
 
 closeAddButton.addEventListener('click', function () {
     popupClose(popupAdd);
+});
+
+closeImgButton.addEventListener('click', function () {
+    popupClose(popupImg);
 });
 
 formEditEl.addEventListener('submit', formEditSubmitHandler);
