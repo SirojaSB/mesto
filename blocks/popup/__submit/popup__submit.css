@@ -11,6 +11,7 @@
     line-height: 22px;
     border-radius: 2px;
     transition: opacity 0.3s ease;
+    margin-top: 16px;
 }
 
 .popup__submit:hover {
@@ -22,5 +23,6 @@
         height: 46px;
         font-size: 14px;
         line-height: 17px;
+        margin-top: 5px;
     }
 }

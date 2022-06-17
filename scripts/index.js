@@ -25,6 +25,14 @@ const initialCards = [
     }
 ];
 
+const validationEn = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_visible'
+};
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('#popup-edit');
@@ -46,6 +54,9 @@ const popupImgName = formAddEl.querySelector('#form-img-name');
 const popupImgLink = formAddEl.querySelector('#form-img-link');
 const snapshotContainer = document.querySelector('.snapshots__elements');
 const snapshotTemplate = document.querySelector('.snapshots__template');
+const submitEditButton = popupEdit.querySelector('.popup__submit')
+const popupOverlays = document.querySelectorAll('.popup');
+
 
 const addPopupListeners = card => {
     card.querySelector('.snapshots__like').addEventListener('click', function (e) {
@@ -86,10 +97,17 @@ initialCards.forEach((item) => {
 
 const popupOpen = popup => {
     popup.classList.add('popup_open');
+    document.addEventListener('keydown', keyHandler);
 };
 
 const popupClose = popup => {
     popup.classList.remove('popup_open');
+};
+
+const keyHandler = evt => {
+    if (evt.key === 'Escape') {
+        popupClose(document.querySelector('.popup_open'));
+    };
 };
 
 const formEditSubmitHandler = e => {
@@ -121,6 +139,10 @@ function popupEditText() {
 editButton.addEventListener('click', function () {
     popupEditText();
 
+    resetInputError(formEditEl);
+
+    activeButtonState(submitEditButton, validationEn);
+
     popupOpen(popupEdit);
 });
 
@@ -138,6 +160,14 @@ closeAddButton.addEventListener('click', function () {
 
 closeImgButton.addEventListener('click', function () {
     popupClose(popupImg);
+});
+
+popupOverlays.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_open')) {
+            popupClose(evt.target);
+        };
+    });
 });
 
 formEditEl.addEventListener('submit', formEditSubmitHandler);
