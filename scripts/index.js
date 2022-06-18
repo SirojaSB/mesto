@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 
-const validationEn = {
+const validationEnable = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit',
@@ -55,6 +55,7 @@ const popupImgLink = formAddEl.querySelector('#form-img-link');
 const snapshotContainer = document.querySelector('.snapshots__elements');
 const snapshotTemplate = document.querySelector('.snapshots__template');
 const submitEditButton = popupEdit.querySelector('.popup__submit')
+const submitAddButton = popupAdd.querySelector('.popup__submit')
 const popupOverlays = document.querySelectorAll('.popup');
 
 
@@ -102,6 +103,7 @@ const popupOpen = popup => {
 
 const popupClose = popup => {
     popup.classList.remove('popup_open');
+    document.removeEventListener('keydown', keyHandler);
 };
 
 const keyHandler = evt => {
@@ -128,6 +130,8 @@ const formAddSubmitHandler = e => {
 
     formAddEl.reset();
 
+    inactiveButtonState(submitAddButton, validationEnable)
+
     popupClose(popupAdd);
 };
 
@@ -139,9 +143,9 @@ function popupEditText() {
 editButton.addEventListener('click', function () {
     popupEditText();
 
-    resetInputError(formEditEl);
+    resetInputError(formEditEl, validationEnable);
 
-    activeButtonState(submitEditButton, validationEn);
+    activeButtonState(submitEditButton, validationEnable);
 
     popupOpen(popupEdit);
 });
