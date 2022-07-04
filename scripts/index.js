@@ -1,5 +1,5 @@
-import { Card } from "./card.js";
-import { FormValidator } from "./validate.js";
+import { Card } from "./Сard.js";
+import { FormValidator } from "./FormValidator.js";
 
 const initialCards = [
     {
@@ -116,7 +116,7 @@ const formAddSubmitHandler = e => {
         link: popupImgLink.value,
     };
 
-    const cardCreateFull = createCard (data);
+    const cardCreateFull = createCard(data);
 
     renderCard(cardCreateFull, snapshotContainer);
 

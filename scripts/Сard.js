@@ -16,7 +16,7 @@ export class Card {
             card.remove();
         });
 
-        this._cardElement.querySelector('.snapshots__photo').addEventListener('click',  () => {
+        this._cardImage.addEventListener('click',  () => {
             this._cardOpen(this._name, this._link);
         });
     }
@@ -24,8 +24,9 @@ export class Card {
     makeCard() {
         this._cardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
 
-        this._cardElement.querySelector('.snapshots__photo').src = this._link;
-        this._cardElement.querySelector('.snapshots__photo').alt= this._name;
+        this._cardImage = this._cardElement.querySelector('.snapshots__photo');
+        this._cardImage.src = this._link;
+        this._cardImage.alt= this._name;
         this._cardElement.querySelector('.snapshots__title').textContent= this._name;
 
         this._addPopupListeners();
