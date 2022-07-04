@@ -1,3 +1,6 @@
+import { Card } from "./card.js";
+import { FormValidator } from "./validate.js";
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -53,45 +56,29 @@ const popupJob = formEditEl.querySelector('#formjob');
 const popupImgName = formAddEl.querySelector('#form-img-name');
 const popupImgLink = formAddEl.querySelector('#form-img-link');
 const snapshotContainer = document.querySelector('.snapshots__elements');
-const snapshotTemplate = document.querySelector('.snapshots__template');
 const submitEditButton = popupEdit.querySelector('.popup__submit')
 const submitAddButton = popupAdd.querySelector('.popup__submit')
 const popupOverlays = document.querySelectorAll('.popup');
 
-
-const addPopupListeners = card => {
-    card.querySelector('.snapshots__like').addEventListener('click', function (e) {
-        e.target.classList.toggle('snapshots__like_active');
-    })
-    card.querySelector('.snapshots__delete').addEventListener('click', function (e) {
-        const card = e.target.closest('.snapshots__element');
-        card.remove();
-    })
-    const snapshotTitle = card.querySelector('.snapshots__title');
-    card.querySelector('.snapshots__photo').addEventListener('click', function (e) {
-        popupOpen(popupImg);
-        imgPopup.src = e.target.src;
-        imgPopup.alt = snapshotTitle.textContent;
-        captionPopup.textContent = snapshotTitle.textContent;
-
-    });
+function cardOpen(title, src) {
+    popupOpen(popupImg);
+    imgPopup.src = src;
+    imgPopup.alt = title;
+    captionPopup.textContent = title;
 }
 
-function createCard (name, link) {
-    const card = snapshotTemplate.content.cloneNode(true);
-    card.querySelector('.snapshots__photo').src = link;
-    card.querySelector('.snapshots__photo').alt= name;
-    card.querySelector('.snapshots__title').textContent= name;
-    addPopupListeners(card);
-    return card;
-};
+function createCard (data) {
+    const card = new Card(data, '.snapshots__template', cardOpen);
+
+    return card.makeCard();
+}
 
 function renderCard(card, container) {
     container.prepend(card);
 }
 
 initialCards.forEach((item) => {
-    const cardCreateFull = createCard (item.name, item.link)
+    const cardCreateFull = createCard (item)
 
     renderCard(cardCreateFull, snapshotContainer);
 });
@@ -109,7 +96,7 @@ const popupClose = popup => {
 const keyHandler = evt => {
     if (evt.key === 'Escape') {
         popupClose(document.querySelector('.popup_open'));
-    };
+    }
 };
 
 const formEditSubmitHandler = e => {
@@ -124,13 +111,18 @@ const formEditSubmitHandler = e => {
 const formAddSubmitHandler = e => {
     e.preventDefault();
 
-    const cardCreateFull = createCard (popupImgName.value, popupImgLink.value);
+    const data = {
+        name: popupImgName.value,
+        link: popupImgLink.value,
+    };
+
+    const cardCreateFull = createCard (data);
 
     renderCard(cardCreateFull, snapshotContainer);
 
     formAddEl.reset();
 
-    inactiveButtonState(submitAddButton, validationEnable)
+    addFormValidate.inactiveButtonState(submitAddButton, validationEnable);
 
     popupClose(popupAdd);
 };
@@ -138,14 +130,14 @@ const formAddSubmitHandler = e => {
 function popupEditText() {
     popupName.value = profileName.textContent;
     popupJob.value = profileJob.textContent;
-};
+}
 
 editButton.addEventListener('click', function () {
     popupEditText();
 
-    resetInputError(formEditEl, validationEnable);
+    editFormValidate.resetInputError(formEditEl, validationEnable);
 
-    activeButtonState(submitEditButton, validationEnable);
+    editFormValidate.activeButtonState(submitEditButton, validationEnable);
 
     popupOpen(popupEdit);
 });
@@ -170,10 +162,16 @@ popupOverlays.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_open')) {
             popupClose(evt.target);
-        };
+        }
     });
 });
 
 formEditEl.addEventListener('submit', formEditSubmitHandler);
 
 formAddEl.addEventListener('submit', formAddSubmitHandler);
+
+const addFormValidate = new FormValidator(validationEnable, formAddEl);
+addFormValidate.enableValidation();
+
+const editFormValidate = new FormValidator(validationEnable, formEditEl);
+editFormValidate.enableValidation();
