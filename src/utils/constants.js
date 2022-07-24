@@ -34,17 +34,15 @@ export const validationEnable = {
     errorClass: 'popup__input-error_visible'
 };
 
-export const editButton = document.querySelector('.profile__edit-button');
+export const buttonEdit = document.querySelector('.profile__edit-button');
 export const popupEditSelector = document.querySelector('#popup-edit');
 export const popupAddSelector = document.querySelector('#popup-add');
 export const popupImgSelector = document.querySelector('#popup-img');
-export const addButton = document.querySelector('.profile__add-button');
-export const profileName = document.querySelector('.profile__name');
+export const buttonAdd = document.querySelector('.profile__add-button');
 export const formEditEl = document.querySelector('#edit-profile');
 export const formAddEl = document.querySelector('#add-snapshot');
-export const profileJob = document.querySelector('.profile__job');
 export const popupName = formEditEl.querySelector('#formname');
 export const popupJob = formEditEl.querySelector('#formjob');
 export const snapshotContainer = document.querySelector('.snapshots__elements');
-export const submitEditButton = popupEditSelector.querySelector('.popup__submit')
-export const submitAddButton = popupAddSelector.querySelector('.popup__submit')
+export const buttonSubmitEdit = popupEditSelector.querySelector('.popup__submit')
+export const buttonSubmitAdd = popupAddSelector.querySelector('.popup__submit')

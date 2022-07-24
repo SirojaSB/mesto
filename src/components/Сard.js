@@ -7,13 +7,15 @@ export class Card {
     }
 
     _addPopupListeners() {
-        this._cardElement.querySelector('.snapshots__like').addEventListener('click', (e) => {
-            e.target.classList.toggle('snapshots__like_active');
+        this._buttonLike = this._cardElement.querySelector('.snapshots__like');
+        this._buttonDelete = this._cardElement.querySelector('.snapshots__delete');
+
+        this._buttonLike.addEventListener('click', () => {
+            this._handleLikeClick()
         });
 
-        this._cardElement.querySelector('.snapshots__delete').addEventListener('click', (e) => {
-            const card = e.target.closest('.snapshots__element');
-            card.remove();
+        this._buttonDelete.addEventListener('click', () => {
+            this._handleDel()
         });
 
         this._cardImage.addEventListener('click',  () => {
@@ -21,8 +23,20 @@ export class Card {
         });
     }
 
+    _handleDel() {
+        this._cardElement.remove();
+        this._cardElement = null;
+    }
+
+    _handleLikeClick() {
+        this._buttonLike.classList.toggle('snapshots__like_active');
+    }
+
     makeCard() {
-        this._cardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
+        this._cardElement = document.querySelector(this._cardSelector)
+            .content
+            .querySelector('.snapshots__element')
+            .cloneNode(true);
 
         this._cardImage = this._cardElement.querySelector('.snapshots__photo');
         this._cardImage.src = this._link;

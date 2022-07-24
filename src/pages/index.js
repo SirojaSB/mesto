@@ -8,28 +8,26 @@ import { FormValidator } from "../components/FormValidator.js";
 import {
     initialCards,
     validationEnable,
-    editButton,
+    buttonEdit,
     popupEditSelector,
     popupAddSelector,
     popupImgSelector,
-    addButton,
-    profileName,
+    buttonAdd,
     formEditEl,
     formAddEl,
-    profileJob,
     popupName,
     popupJob,
     snapshotContainer,
-    submitEditButton,
-    submitAddButton,
+    buttonSubmitEdit,
+    buttonSubmitAdd,
 } from "../utils/constants.js";
 
-function cardOpen(title, src) {
+function openCard(title, src) {
     popupImg.open(title, src);
 }
 
 function createCard(data) {
-    const card = new Card(data, '.snapshots__template', cardOpen);
+    const card = new Card(data, '.snapshots__template', openCard);
 
     return card.makeCard();
 }
@@ -44,54 +42,54 @@ const cardList = new Section({
 
 cardList.renderItems();
 
-const formEditSubmitHandler = (values) => {
+const handleFormEditSubmit = (values) => {
     userInfo.setUserInfo(values)
 
     popupEdit.close();
 };
 
-const formAddSubmitHandler = (values) => {
+const handleFormAddSubmit = (values) => {
     const cardCreateFull = createCard(values);
 
     cardList.setItem(cardCreateFull);
 
-    addFormValidate.inactiveButtonState(submitAddButton, validationEnable);
-
     popupAdd.close();
 };
 
-editButton.addEventListener('click', function () {
+buttonEdit.addEventListener('click', function () {
     const info = userInfo.getUserInfo();
     popupName.value = info.name;
     popupJob.value = info.job;
 
-    editFormValidate.resetInputError(formEditEl, validationEnable);
+    formEditValidate.resetInputError(formEditEl, validationEnable);
 
-    editFormValidate.activeButtonState(submitEditButton, validationEnable);
+    formEditValidate.activeButtonState(buttonSubmitEdit, validationEnable);
 
     popupEdit.open();
 });
 
-addButton.addEventListener('click', function () {
+buttonAdd.addEventListener('click', function () {
+    formAddValidate.inactiveButtonState(buttonSubmitAdd, validationEnable);
+
     popupAdd.open();
 });
 
 const userInfo = new UserInfo({
-    userName: profileName,
-    userJob: profileJob,
+    userName: '.profile__name',
+    userJob: '.profile__job',
 })
 
 const popupImg = new PopupWithImage(popupImgSelector);
 popupImg.setEventListeners();
 
-const popupAdd = new PopupWithForm(popupAddSelector, formAddSubmitHandler);
+const popupAdd = new PopupWithForm(popupAddSelector, handleFormAddSubmit);
 popupAdd.setEventListeners();
 
-const popupEdit = new PopupWithForm(popupEditSelector, formEditSubmitHandler);
+const popupEdit = new PopupWithForm(popupEditSelector, handleFormEditSubmit);
 popupEdit.setEventListeners();
 
-const addFormValidate = new FormValidator(validationEnable, formAddEl);
-addFormValidate.enableValidation();
+const formAddValidate = new FormValidator(validationEnable, formAddEl);
+formAddValidate.enableValidation();
 
-const editFormValidate = new FormValidator(validationEnable, formEditEl);
-editFormValidate.enableValidation();
+const formEditValidate = new FormValidator(validationEnable, formEditEl);
+formEditValidate.enableValidation();
