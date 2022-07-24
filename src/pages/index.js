@@ -9,9 +9,6 @@ import {
     initialCards,
     validationEnable,
     buttonEdit,
-    popupEditSelector,
-    popupAddSelector,
-    popupImgSelector,
     buttonAdd,
     formEditEl,
     formAddEl,
@@ -61,15 +58,15 @@ buttonEdit.addEventListener('click', function () {
     popupName.value = info.name;
     popupJob.value = info.job;
 
-    formEditValidate.resetInputError(formEditEl, validationEnable);
+    formEditValidate.resetInputError();
 
-    formEditValidate.activeButtonState(buttonSubmitEdit, validationEnable);
+    formEditValidate.activeButtonState();
 
     popupEdit.open();
 });
 
 buttonAdd.addEventListener('click', function () {
-    formAddValidate.inactiveButtonState(buttonSubmitAdd, validationEnable);
+    formAddValidate.inactiveButtonState();
 
     popupAdd.open();
 });
@@ -79,13 +76,13 @@ const userInfo = new UserInfo({
     userJob: '.profile__job',
 })
 
-const popupImg = new PopupWithImage(popupImgSelector);
+const popupImg = new PopupWithImage('#popup-img');
 popupImg.setEventListeners();
 
-const popupAdd = new PopupWithForm(popupAddSelector, handleFormAddSubmit);
+const popupAdd = new PopupWithForm('#popup-add', handleFormAddSubmit);
 popupAdd.setEventListeners();
 
-const popupEdit = new PopupWithForm(popupEditSelector, handleFormEditSubmit);
+const popupEdit = new PopupWithForm('#popup-edit', handleFormEditSubmit);
 popupEdit.setEventListeners();
 
 const formAddValidate = new FormValidator(validationEnable, formAddEl);

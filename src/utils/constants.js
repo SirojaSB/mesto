@@ -35,14 +35,11 @@ export const validationEnable = {
 };
 
 export const buttonEdit = document.querySelector('.profile__edit-button');
-export const popupEditSelector = document.querySelector('#popup-edit');
-export const popupAddSelector = document.querySelector('#popup-add');
-export const popupImgSelector = document.querySelector('#popup-img');
 export const buttonAdd = document.querySelector('.profile__add-button');
 export const formEditEl = document.querySelector('#edit-profile');
 export const formAddEl = document.querySelector('#add-snapshot');
 export const popupName = formEditEl.querySelector('#formname');
 export const popupJob = formEditEl.querySelector('#formjob');
 export const snapshotContainer = document.querySelector('.snapshots__elements');
-export const buttonSubmitEdit = popupEditSelector.querySelector('.popup__submit')
-export const buttonSubmitAdd = popupAddSelector.querySelector('.popup__submit')
+export const buttonSubmitEdit = formEditEl.querySelector('.popup__submit')
+export const buttonSubmitAdd = formAddEl.querySelector('.popup__submit')
