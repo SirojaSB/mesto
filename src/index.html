@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип Место">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип Место">
   </header>
   <main class="content">
       <section class="profile">
           <div class="profile__content">
-              <img src="./images/avatar.jpg" alt="Фотография исследователя" class="profile__avatar">
+              <img src="<%=require('./images/avatar.jpg')%>" alt="Фотография исследователя" class="profile__avatar">
               <div class="profile__info">
                   <h1 class="profile__name">Жак-Ив Кусто</h1>
                   <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
@@ -38,11 +37,11 @@
           <h3 class="popup__title">Новое место</h3>
           <form id="add-snapshot" name="add-snapshot" class="popup__form" novalidate>
               <label class="popup__label">
-                <input id="form-img-name" type="text" name="form-img-name" class="popup__input popup__input_type_name" placeholder="Название" required minlength="2" maxlength="30">
+                <input id="form-img-name" type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название" required minlength="2" maxlength="30">
                 <span class="popup__input-error form-img-name-error"></span>
               </label>
               <label class="popup__label">
-                <input id="form-img-link" type="url" name="form-img-link" class="popup__input popup__input_type_job" placeholder="Ссылка на изображение" required>
+                <input id="form-img-link" type="url" name="link" class="popup__input popup__input_type_job" placeholder="Ссылка на изображение" required>
                 <span class="popup__input-error form-img-link-error"></span>
               </label>
               <button type="submit" class="popup__submit" >Создать</button>
@@ -56,11 +55,11 @@
           <h3 class="popup__title">Редактировать профиль</h3>
           <form id="edit-profile" name="edit-profile" class="popup__form" novalidate>
               <label class="popup__label">
-                <input id="formname" type="text" name="formname" class="popup__input popup__input_type_name" placeholder="ФИО" required minlength="2" maxlength="40">
+                <input id="formname" type="text" name="name" class="popup__input popup__input_type_name" placeholder="ФИО" required minlength="2" maxlength="40">
                 <span class="popup__input-error formname-error"></span>
               </label>
               <label class="popup__label">
-                <input id="formjob" type="text" name="formjob" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required minlength="2" maxlength="200">
+                <input id="formjob" type="text" name="job" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required minlength="2" maxlength="200">
                 <span class="popup__input-error formjob-error"></span>
               </label>
               <button type="submit" class="popup__submit" >Сохранить</button>
@@ -71,7 +70,7 @@
   <div id="popup-img" class="popup popup_img">
       <div class="popup__figure">
           <button id="close-img" type="button" class="popup__close" aria-label="Закрыть карточку"></button>
-          <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография карточки" class="popup__image">
+          <img src="<%=require('./images/kirill-pershin-unsplash.jpg')%>" alt="Фотография карточки" class="popup__image">
           <p class="popup__caption"></p>
       </div>
   </div>
@@ -79,17 +78,13 @@
   <template class="snapshots__template">
       <li class="snapshots__element">
           <button type="button" class="snapshots__delete" aria-label="Удалить карточку"></button>
-          <img src="./images/kirill-pershin-unsplash.jpg" alt="Фотография карточки" class="snapshots__photo">
+          <img src="<%=require('./images/kirill-pershin-unsplash.jpg')%>" alt="Фотография карточки" class="snapshots__photo">
           <div class="snapshots__info">
               <h2 class="snapshots__title"></h2>
               <button type="button" class="snapshots__like"></button>
           </div>
       </li>
   </template>
-
-  <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="scripts/FormValidator.js"></script>
-  <script type="module" src="scripts/Сard.js"></script>
 
 </body>
 </html>
