@@ -36,18 +36,28 @@ function createCard(data) {
         openCard,
         () =>{popupAgree.open(card)},
         async () =>{
-            const res = await api.likeCard(data._id);
+            try {
+                const res = await api.likeCard(data._id);
 
-            card.handleLike();
+                card.handleLike();
 
-            card.setNumLikes(res);
+                card.setNumLikes(res);
+            }
+            catch (err) {
+                console.log(err)
+            }
         },
         async () =>{
-            const res = await api.dislikeCard(data._id);
+            try {
+                const res = await api.dislikeCard(data._id);
 
-            card.handleDislike();
+                card.handleDislike();
 
-            card.setNumLikes(res);
+                card.setNumLikes(res);
+            }
+            catch (err) {
+                console.log(err)
+            }
         });
 
     return card.makeCard();
