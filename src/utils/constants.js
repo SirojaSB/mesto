@@ -1,30 +1,3 @@
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 export const validationEnable = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -36,10 +9,10 @@ export const validationEnable = {
 
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
+export const buttonAvatar = document.querySelector('.profile__avatar');
 export const formEditEl = document.querySelector('#edit-profile');
 export const formAddEl = document.querySelector('#add-snapshot');
+export const formEditAvatar = document.querySelector('#edit-avatar');
 export const popupName = formEditEl.querySelector('#formname');
 export const popupJob = formEditEl.querySelector('#formjob');
 export const snapshotContainer = document.querySelector('.snapshots__elements');
-export const buttonSubmitEdit = formEditEl.querySelector('.popup__submit')
-export const buttonSubmitAdd = formAddEl.querySelector('.popup__submit')

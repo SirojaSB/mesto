@@ -12,11 +12,13 @@
   <main class="content">
       <section class="profile">
           <div class="profile__content">
-              <img src="<%=require('./images/avatar.jpg')%>" alt="Фотография исследователя" class="profile__avatar">
+              <div class="profile__avatar-container">
+                  <img src="#" alt="Фотография исследователя" class="profile__avatar">
+              </div>
               <div class="profile__info">
-                  <h1 class="profile__name">Жак-Ив Кусто</h1>
+                  <h1 class="profile__name"></h1>
                   <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
-                  <p class="profile__job">Исследователь океана</p>
+                  <p class="profile__job"></p>
               </div>
           </div>
           <button type="button" class="profile__add-button" aria-label="Добавить фотографию"></button>
@@ -59,10 +61,34 @@
                 <span class="popup__input-error formname-error"></span>
               </label>
               <label class="popup__label">
-                <input id="formjob" type="text" name="job" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required minlength="2" maxlength="200">
+                <input id="formjob" type="text" name="about" class="popup__input popup__input_type_job" placeholder="Информация о деятельности" required minlength="2" maxlength="200">
                 <span class="popup__input-error formjob-error"></span>
               </label>
               <button type="submit" class="popup__submit" >Сохранить</button>
+          </form>
+      </div>
+  </div>
+
+  <div id="popup-avatar" class="popup">
+      <div class="popup__content">
+          <button id="close-avatar" type="button" class="popup__close" aria-label="Закрыть форму с редактированием аватара"></button>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form id="edit-avatar" name="edit-avatar" class="popup__form" novalidate>
+              <label class="popup__label">
+                  <input id="form-avatar-link" type="url" name="avatar" class="popup__input popup__input_type_job" placeholder="Ссылка на изображение" required>
+                  <span class="popup__input-error form-avatar-link-error"></span>
+              </label>
+              <button type="submit" class="popup__submit" >Сохранить</button>
+          </form>
+      </div>
+  </div>
+
+  <div id="popup-agree" class="popup">
+      <div class="popup__content">
+          <button id="close-agree" type="button" class="popup__close" aria-label="Закрыть попап с подтверждением"></button>
+          <h3 class="popup__title">Вы уверены?</h3>
+          <form id="agree-delete" name="edit-avatar" class="popup__form popup__form_agree" novalidate>
+            <button type="submit" class="popup__submit popup__submit_agree" >Да</button>
           </form>
       </div>
   </div>
@@ -81,7 +107,10 @@
           <img src="<%=require('./images/kirill-pershin-unsplash.jpg')%>" alt="Фотография карточки" class="snapshots__photo">
           <div class="snapshots__info">
               <h2 class="snapshots__title"></h2>
-              <button type="button" class="snapshots__like"></button>
+              <div class="like-container">
+                  <button type="button" class="snapshots__like"></button>
+                  <h3 class="snapshots__num-like">0</h3>
+              </div>
           </div>
       </li>
   </template>
